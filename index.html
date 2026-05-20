@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#1a0a06">
+<title>Una proposta irrinunciabile</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #c0392b;
+    --dark-red: #922b21;
+    --cream: #fdf6ec;
+    --dark: #1a1008;
+    --gold: #c9a84c;
+    --light-gold: #f4e4b0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* UNICORNO */
+  #unicorn {
+    position: fixed;
+    bottom: 20px;
+    left: -80px;
+    font-size: 26px;
+    z-index: 9999;
+    animation: unicornWalk 20s linear infinite;
+    cursor: pointer;
+  }
+  @keyframes unicornWalk {
+    0%   { left: -80px; transform: scaleX(1); }
+    48%  { left: calc(100vw + 80px); transform: scaleX(1); }
+    49%  { left: calc(100vw + 80px); transform: scaleX(-1); }
+    50%  { left: calc(100vw + 80px); transform: scaleX(-1); }
+    98%  { left: -80px; transform: scaleX(-1); }
+    99%  { left: -80px; transform: scaleX(1); }
+    100% { left: -80px; transform: scaleX(1); }
+  }
+
+  /* LANG SWITCHER */
+  #lang-switcher {
+    position: fixed; top: 16px; right: 16px;
+    z-index: 1000; display: flex; gap: 8px;
+  }
+  .lang-btn {
+    background: white; border: 2px solid var(--red); color: var(--red);
+    padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 500;
+    cursor: pointer; transition: all .2s; font-family: 'DM Sans', sans-serif;
+    touch-action: manipulation;
+  }
+  .lang-btn.active { background: var(--red); color: white; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(160deg, #1a0a06 0%, #3d0e0e 50%, #1a0a06 100%);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center; padding: 80px 24px 40px;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 50% 50%, rgba(192,57,43,0.3) 0%, transparent 70%);
+  }
+  .hero-petals { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+  .petal {
+    position: absolute; font-size: 18px; opacity: 0;
+    animation: fall linear infinite;
+  }
+  @keyframes fall {
+    0%   { opacity: 0; transform: translateY(-20px) rotate(0deg); }
+    10%  { opacity: 0.7; }
+    90%  { opacity: 0.5; }
+    100% { opacity: 0; transform: translateY(100vh) rotate(360deg); }
+  }
+  .hero-eyebrow {
+    color: var(--gold); font-size: 11px; letter-spacing: 4px;
+    text-transform: uppercase; margin-bottom: 24px;
+    position: relative; z-index: 1;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(34px, 8vw, 72px);
+    color: white; line-height: 1.1;
+    position: relative; z-index: 1; margin-bottom: 20px;
+  }
+  .hero h1 em { color: var(--gold); font-style: italic; }
+  .hero-sub {
+    color: rgba(255,255,255,0.65); font-size: 16px;
+    max-width: 300px; line-height: 1.6;
+    position: relative; z-index: 1; margin-bottom: 40px;
+  }
+  .scroll-hint {
+    position: relative; z-index: 1; color: var(--gold); font-size: 22px;
+    animation: bounce 2s ease-in-out infinite;
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(8px); }
+  }
+
+  /* SEZIONI */
+  section { padding: 56px 20px; max-width: 480px; margin: 0 auto; }
+  .section-label {
+    font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--red); margin-bottom: 12px; font-weight: 500;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(24px, 6vw, 38px);
+    color: var(--dark); margin-bottom: 28px; line-height: 1.2;
+  }
+
+  /* MOTIVI */
+  .motivo {
+    background: white; border-radius: 14px; padding: 18px;
+    margin-bottom: 14px; display: flex; gap: 14px; align-items: flex-start;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+    border-left: 4px solid var(--red);
+    opacity: 0; transform: translateY(20px);
+    transition: opacity .5s, transform .5s;
+  }
+  .motivo.visible { opacity: 1; transform: none; }
+  .motivo-num {
+    font-family: 'Playfair Display', serif; font-size: 26px;
+    color: var(--red); opacity: 0.35; min-width: 28px; line-height: 1;
+  }
+  .motivo-text { font-size: 14px; line-height: 1.6; color: #444; }
+  .motivo-text strong {
+    color: var(--dark); display: block; margin-bottom: 4px; font-weight: 500; font-size: 15px;
+  }
+
+  /* DRESS CODE */
+  .dresscode-box {
+    background: linear-gradient(135deg, #1a0a06, #3d0e0e);
+    border-radius: 20px; padding: 28px 20px; color: white; text-align: center;
+  }
+  .dresscode-box .dc-icon { font-size: 44px; margin-bottom: 14px; display: block; }
+  .dresscode-box h3 {
+    font-family: 'Playfair Display', serif; font-size: 20px;
+    color: var(--gold); margin-bottom: 12px;
+  }
+  .dresscode-box p { font-size: 14px; line-height: 1.6; color: rgba(255,255,255,0.8); }
+
+  /* T&C */
+  .tc-box {
+    background: #fff8ee; border: 1px solid var(--light-gold);
+    border-radius: 14px; padding: 20px;
+    font-size: 12px; color: #777; line-height: 1.7;
+  }
+  .tc-box h4 { font-family: 'Playfair Display', serif; font-size: 15px; color: var(--dark); margin-bottom: 10px; }
+
+  /* FORM SECTION */
+  .form-section { background: var(--dark); margin: 0; max-width: none; padding: 56px 20px; }
+  .form-inner { max-width: 480px; margin: 0 auto; }
+  .form-section .section-label { color: var(--gold); }
+  .form-section .section-title { color: white; }
+
+  /* DATE PICKER */
+  .date-picker { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+  .date-option { display: none; }
+  .date-label {
+    display: flex; flex-direction: column; align-items: center;
+    background: rgba(255,255,255,0.05);
+    border: 2px solid rgba(255,255,255,0.12);
+    border-radius: 14px; padding: 20px 10px;
+    cursor: pointer; transition: all .2s; text-align: center;
+    touch-action: manipulation;
+  }
+  .date-option:checked + .date-label {
+    background: rgba(192,57,43,0.25);
+    border-color: var(--red);
+  }
+  .date-label .day {
+    font-family: 'Playfair Display', serif; font-size: 20px; color: white; margin-bottom: 4px;
+  }
+  .date-label .time { font-size: 12px; color: rgba(255,255,255,0.45); }
+  .date-label .d-emoji { font-size: 26px; margin-bottom: 8px; display: block; }
+
+  /* BOTTONI RISPOSTA */
+  .response-btns { display: flex; flex-direction: column; gap: 12px; margin-bottom: 14px; }
+  .btn-yes {
+    background: var(--red); color: white; border: none;
+    border-radius: 14px; padding: 18px 20px;
+    font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 500;
+    cursor: pointer; transition: all .2s; text-align: center;
+    touch-action: manipulation;
+  }
+  .btn-yes:active { transform: scale(0.98); }
+  .btn-yes.enthusiastic {
+    background: linear-gradient(135deg, #c9a84c, #e8c870); color: var(--dark);
+  }
+  .btn-no {
+    background: transparent; color: rgba(255,255,255,0.3);
+    border: 2px solid rgba(255,255,255,0.1);
+    border-radius: 14px; padding: 15px 20px;
+    font-family: 'DM Sans', sans-serif; font-size: 14px;
+    cursor: pointer; transition: all .3s; touch-action: manipulation;
+  }
+  .btn-no.shaking { animation: shake .5s ease; color: rgba(255,255,255,0.5); border-color: rgba(255,255,255,0.2); }
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    15% { transform: translateX(-8px) rotate(-1deg); }
+    30% { transform: translateX(8px) rotate(1deg); }
+    45% { transform: translateX(-6px); }
+    60% { transform: translateX(6px); }
+    75% { transform: translateX(-4px); }
+  }
+  .divider { text-align: center; color: var(--gold); font-size: 18px; margin: 4px 0; opacity: 0.4; }
+  .err-msg { color: #e74c3c; font-size: 13px; text-align: center; margin-top: -6px; margin-bottom: 8px; display: none; }
+  .err-msg.show { display: block; }
+
+  /* CELEBRATION OVERLAY */
+  #celebration {
+    display: none; position: fixed; inset: 0;
+    background: rgba(26,10,8,0.97);
+    z-index: 9000;
+    flex-direction: column; align-items: center; justify-content: center;
+    text-align: center;
+    padding: 40px 24px;
+    padding-bottom: max(40px, env(safe-area-inset-bottom));
+    overflow-y: auto; -webkit-overflow-scrolling: touch;
+  }
+  #celebration.show { display: flex; }
+  .confetti-container { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 0; }
+  .conf {
+    position: absolute; top: -20px;
+    animation: confalldown linear forwards; border-radius: 2px;
+  }
+  @keyframes confalldown { to { transform: translateY(110vh) rotate(720deg); opacity: 0; } }
+  .cel-emoji {
+    font-size: 60px; margin-bottom: 20px;
+    animation: popIn .5s ease; position: relative; z-index: 1;
+  }
+  @keyframes popIn {
+    0%   { transform: scale(0) rotate(-20deg); }
+    70%  { transform: scale(1.15) rotate(5deg); }
+    100% { transform: scale(1) rotate(0); }
+  }
+  .cel-title {
+    font-family: 'Playfair Display', serif; font-size: clamp(26px, 7vw, 44px);
+    color: var(--gold); margin-bottom: 16px; line-height: 1.2;
+    position: relative; z-index: 1;
+  }
+  .cel-sub {
+    color: rgba(255,255,255,0.8); font-size: 15px;
+    line-height: 1.6; max-width: 300px; margin-bottom: 28px;
+    position: relative; z-index: 1;
+  }
+  .cel-sub em { color: var(--gold); font-style: normal; font-weight: 500; }
+  .btn-action {
+    background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.75);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 14px; padding: 14px 28px;
+    font-family: 'DM Sans', sans-serif; font-size: 15px;
+    cursor: pointer; transition: all .2s;
+    position: relative; z-index: 1;
+    touch-action: manipulation;
+  }
+  .btn-action:active { background: rgba(255,255,255,0.2); }
+
+  /* PHONE CONFIRM SCREEN */
+  #phone-confirm {
+    display: none; position: fixed; inset: 0;
+    background: #0d1f0f;
+    z-index: 9100;
+    flex-direction: column; align-items: center; justify-content: center;
+    text-align: center;
+    padding: 40px 24px;
+    padding-bottom: max(40px, env(safe-area-inset-bottom));
+    overflow-y: auto; -webkit-overflow-scrolling: touch;
+  }
+  #phone-confirm.show { display: flex; }
+  .pc-badge {
+    background: #25D366; border-radius: 50%;
+    width: 80px; height: 80px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 40px; margin-bottom: 20px;
+    box-shadow: 0 0 40px rgba(37,211,102,0.4);
+    animation: glowPulse 2s ease-in-out infinite;
+    flex-shrink: 0;
+  }
+  @keyframes glowPulse {
+    0%, 100% { box-shadow: 0 0 30px rgba(37,211,102,0.3); }
+    50%       { box-shadow: 0 0 60px rgba(37,211,102,0.6); }
+  }
+  .pc-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(20px, 5vw, 32px);
+    color: white; margin-bottom: 12px; line-height: 1.2;
+  }
+  .pc-irony {
+    color: rgba(255,255,255,0.6); font-size: 14px;
+    line-height: 1.7; max-width: 290px; margin-bottom: 16px;
+  }
+  .pc-irony em { color: #7ee68a; font-style: normal; }
+  .pc-date-display {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 12px; padding: 10px 20px;
+    color: var(--gold); font-size: 14px;
+    margin-bottom: 24px; font-weight: 500;
+  }
+  .btn-whatsapp {
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    background: #25D366; color: white;
+    border-radius: 16px; padding: 18px 28px;
+    font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 600;
+    width: 100%; max-width: 300px;
+    text-decoration: none; cursor: pointer;
+    box-shadow: 0 4px 24px rgba(37,211,102,0.4);
+    transition: transform .15s;
+    touch-action: manipulation;
+    -webkit-appearance: none;
+    border: none;
+    margin-bottom: 14px;
+  }
+  .btn-whatsapp:active { transform: scale(0.97); }
+  .btn-whatsapp-icon { font-size: 22px; flex-shrink: 0; }
+  .pc-nota { font-size: 11px; color: rgba(255,255,255,0.25); max-width: 240px; line-height: 1.5; }
+
+  footer { text-align: center; padding: 28px 20px; font-size: 12px; color: #aaa; background: var(--dark); }
+</style>
+</head>
+<body>
+
+<div id="unicorn" title="Shhh...">🦄</div>
+
+<div id="lang-switcher">
+  <button class="lang-btn active" onclick="setLang('it')">🇮🇹 IT</button>
+  <button class="lang-btn" onclick="setLang('ro')">🇷🇴 RO</button>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-petals" id="petals"></div>
+  <p class="hero-eyebrow"
+     data-it="✦ Una proposta ufficiale ✦"
+     data-ro="✦ O propunere oficială ✦">✦ Una proposta ufficiale ✦</p>
+  <h1 data-it="E allora…<br><em>ci vieni a cena<br>con me?</em>"
+      data-ro="Ei bine…<br><em>vii la cină<br>cu mine?</em>">E allora…<br><em>ci vieni a cena<br>con me?</em></h1>
+  <p class="hero-sub"
+     data-it="Ștefana, questa è un'opportunità rara. Tipo 1 su 6 miliardi. Procedi a tuo rischio e meraviglia."
+     data-ro="Ștefana, aceasta e o oportunitate rară. Cam 1 din 6 miliarde. Continuă pe propriul risc și uimire.">
+     Ștefana, questa è un'opportunità rara. Tipo 1 su 6 miliardi. Procedi a tuo rischio e meraviglia.
+  </p>
+  <div class="scroll-hint">↓</div>
+</div>
+
+<!-- MOTIVI -->
+<section>
+  <p class="section-label"
+     data-it="Il dossier scientifico"
+     data-ro="Dosarul stiintific">Il dossier scientifico</p>
+  <h2 class="section-title"
+      data-it="Perché dovresti accettare<br>(senza pensarci troppo)"
+      data-ro="De ce ar trebui să accepți<br>(fără să te gândești prea mult)">Perché dovresti accettare<br>(senza pensarci troppo)</h2>
+
+  <div class="motivo">
+    <div class="motivo-num">1</div>
+    <div class="motivo-text">
+      <strong data-it="Fascino mafioso DOC" data-ro="Farmec mafiot autentic">Fascino mafioso DOC</strong>
+      <span data-it="Proveniente dalla Sicilia, il suo fare fascinoso e mafioso farebbe fare la fila a migliaia di donne. I contatti giusti si coltivano. La lealtà, ancora di più."
+            data-ro="Originar din Sicilia, stilul său fascinant și mafiot ar pune la coadă mii de femei. Conexiunile bune se cultivă. Loialitatea, și mai mult.">
+      Proveniente dalla Sicilia, il suo fare fascinoso e mafioso farebbe fare la fila a migliaia di donne. I contatti giusti si coltivano. La lealtà, ancora di più.</span>
+    </div>
+  </div>
+
+  <div class="motivo">
+    <div class="motivo-num">2</div>
+    <div class="motivo-text">
+      <strong data-it="Genio dell'IT" data-ro="Geniu IT">Genio dell'IT</strong>
+      <span data-it="Sa spegnere e riaccendere le ardenti serate in pieno bollore come nessun altro. Qualcosa che, tecnicamente, non fa nessuno."
+            data-ro="Știe să stingă și să reaprindă serile fierbinți ca nimeni altul. Ceva ce, tehnic vorbind, nu face nimeni altcineva.">
+      Sa spegnere e riaccendere le ardenti serate in pieno bollore come nessun altro. Qualcosa che, tecnicamente, non fa nessuno.</span>
+    </div>
+  </div>
+
+  <div class="motivo">
+    <div class="motivo-num">3</div>
+    <div class="motivo-text">
+      <strong data-it="Occhi azzurri (non verdi)" data-ro="Ochi albastri (nu verzi)">Occhi azzurri (non verdi)</strong>
+      <span data-it="Azzurri. Come il mare. Non verdi come certa gente. Dettaglio tutt'altro che irrilevante."
+            data-ro="Albastri. Ca marea. Nu verzi ca unii. Un detaliu deloc neglijabil.">
+      Azzurri. Come il mare. Non verdi come certa gente. Dettaglio tutt'altro che irrilevante.</span>
+    </div>
+  </div>
+
+  <div class="motivo">
+    <div class="motivo-num">4</div>
+    <div class="motivo-text">
+      <strong data-it="1,75 m sulla carta d'identità" data-ro="1,75 m pe carte de identitate">1,75 m sulla carta d'identità</strong>
+      <span data-it="Ancora in fase di completamento, ma pronto a regalarti emozioni incredibili dalla sua altezza ufficialmente documentata."
+            data-ro="Încă în faza de finalizare, dar gata să-ți ofere emoții incredibile de la înălțimea sa oficial documentată.">
+      Ancora in fase di completamento, ma pronto a regalarti emozioni incredibili dalla sua altezza ufficialmente documentata.</span>
+    </div>
+  </div>
+
+  <div class="motivo">
+    <div class="motivo-num">5</div>
+    <div class="motivo-text">
+      <strong data-it="Peugeot 206+ — Il futuro dell'auto" data-ro="Peugeot 206+ — Viitorul masinii">Peugeot 206+ — Il futuro dell'auto</strong>
+      <span data-it="Ultimo ritrovato della tecnica automobilistica moderna. Una vera auto da emozioni, a ben 70 km/h. Roba da far girare la testa — letteralmente."
+            data-ro="Ultima realizare a tehnicii auto moderne. O mașină adevărată pentru emoții, la 70 km/h. Ceva care-ți dă capul pe spate — literal.">
+      Ultimo ritrovato della tecnica automobilistica moderna. Una vera auto da emozioni, a ben 70 km/h. Roba da far girare la testa — letteralmente.</span>
+    </div>
+  </div>
+
+  <div class="motivo">
+    <div class="motivo-num">6</div>
+    <div class="motivo-text">
+      <strong data-it="Bicipiti in costruzione" data-ro="Bicepsi in constructie">Bicipiti in costruzione</strong>
+      <span data-it="Ancora in fase di sviluppo, ma le previsioni sono promettenti. Investire ora significa accedere al valore futuro prima di tutti."
+            data-ro="Încă în faza de dezvoltare, dar previziunile sunt promițătoare. A investi acum înseamnă a accesa valoarea viitoare înaintea tuturor.">
+      Ancora in fase di sviluppo, ma le previsioni sono promettenti. Investire ora significa accedere al valore futuro prima di tutti.</span>
+    </div>
+  </div>
+
+  <div class="motivo">
+    <div class="motivo-num">7</div>
+    <div class="motivo-text">
+      <strong data-it="Contatti molto utili" data-ro="Contacte utile">Contatti molto utili</strong>
+      <span data-it="Avere certi contatti non guasta mai. In caso di necessità, sa sempre a chi rivolgersi. Diciamo che certi problemi si risolvono in modo... creativo."
+            data-ro="A avea anumite conexiuni nu strică niciodată. La nevoie, știe cui să se adreseze. Să zicem că unele probleme se rezolvă... creativ.">
+      Avere certi contatti non guasta mai. In caso di necessità, sa sempre a chi rivolgersi. Diciamo che certi problemi si risolvono in modo... creativo.</span>
+    </div>
+  </div>
+
+  <div class="motivo">
+    <div class="motivo-num">8</div>
+    <div class="motivo-text">
+      <strong data-it="Cieco alle red flag, ma non alla tua luce" data-ro="Orb la semnale de alarma, dar nu la lumina ta">Cieco alle red flag, ma non alla tua luce</strong>
+      <span data-it="Completamente incapace di vedere i segnali d'allarme — ma apprezza eccome il rosso focoso della tua fiammeggiante passione. Qualcuno lo chiamerebbe un difetto. Lui lo chiama fedeltà."
+            data-ro="Complet incapabil să vadă semnalele de alarmă — dar apreciază din plin roșul aprins al pasiunii tale. Unii ar numi-o slăbiciune. El o numește loialitate.">
+      Completamente incapace di vedere i segnali d'allarme — ma apprezza eccome il rosso focoso della tua fiammeggiante passione. Qualcuno lo chiamerebbe un difetto. Lui lo chiama fedeltà.</span>
+    </div>
+  </div>
+</section>
+
+<!-- DRESS CODE -->
+<section style="padding-top: 0;">
+  <p class="section-label"
+     data-it="Istruzioni per l'uso"
+     data-ro="Instructiuni de utilizare">Istruzioni per l'uso</p>
+  <h2 class="section-title"
+      data-it="Dress code"
+      data-ro="Dress code">Dress code</h2>
+  <div class="dresscode-box">
+    <span class="dc-icon">👗</span>
+    <h3 data-it="Vieni come sei." data-ro="Vino cum ești.">Vieni come sei.</h3>
+    <p data-it="Saresti bella anche con un sacco dell'umido addosso, sinceramente. Ma se vuoi vestirti elegante, nessuno si lamenterà. Dress code ufficiale: <em style='color:var(--gold)'>te stessa</em>. Che già è moltissimo."
+       data-ro="Ai arăta bine chiar și cu un sac de gunoi pe tine, sincer. Dar dacă vrei să te îmbraci elegant, nimeni nu se va plânge. Codul vestimentar oficial: <em style='color:var(--gold)'>tu însăți</em>. Ceea ce e deja foarte mult.">
+    Saresti bella anche con un sacco dell'umido addosso, sinceramente. Ma se vuoi vestirti elegante, nessuno si lamenterà. Dress code ufficiale: <em style='color:var(--gold)'>te stessa</em>. Che già è moltissimo.</p>
+  </div>
+</section>
+
+<!-- T&C -->
+<section style="padding-top: 0;">
+  <div class="tc-box">
+    <h4 data-it="Termini e Condizioni (da leggere attentamente)"
+        data-ro="Termeni si Conditii (de citit cu atentie)">Termini e Condizioni (da leggere attentamente)</h4>
+    <span data-it="Accettando questa proposta, l'utente (d'ora in poi «Ștefana») dichiara di fidarsi ciecamente e di lasciarsi conquistare entro un periodo ragionevole, stimato in una cena ma non limitato ad essa. Ștefana si impegna a non esercitare il diritto di recesso durante la prima portata. Il proponente non si assume responsabilità per eventuali attacchi di ridere, momenti imbarazzanti o eccessiva simpatia involontaria. La presente offerta è valida fino a esaurimento serata. Qualsiasi tentativo di rispondere «No» verrà tecnicamente rigettato dal sistema. Non sono previsti rimborsi per aspettative infrante — ma sono previste aspettative abbondantemente soddisfatte."
+          data-ro="Acceptând această propunere, utilizatoarea (de acum înainte «Ștefana») declară că are încredere oarbă și că se lasă cucerită într-o perioadă rezonabilă, estimată la o cină, dar nelimitată la aceasta. Ștefana se angajează să nu exercite dreptul de retragere în timpul primului fel de mâncare. Oferta este valabilă până la epuizarea serii. Orice tentativă de a răspunde «Nu» va fi tehnic respinsă de sistem.">
+    Accettando questa proposta, l'utente (d'ora in poi «Ștefana») dichiara di fidarsi ciecamente e di lasciarsi conquistare entro un periodo ragionevole, stimato in una cena ma non limitato ad essa. Ștefana si impegna a non esercitare il diritto di recesso durante la prima portata. Il proponente non si assume responsabilità per eventuali attacchi di ridere, momenti imbarazzanti o eccessiva simpatia involontaria. La presente offerta è valida fino a esaurimento serata. Qualsiasi tentativo di rispondere «No» verrà tecnicamente rigettato dal sistema. Non sono previsti rimborsi per aspettative infrante — ma sono previste aspettative abbondantemente soddisfatte.</span>
+  </div>
+</section>
+
+<!-- FORM -->
+<div class="form-section">
+  <div class="form-inner">
+    <p class="section-label"
+       data-it="La tua risposta ufficiale"
+       data-ro="Raspunsul tau oficial">La tua risposta ufficiale</p>
+    <h2 class="section-title"
+        data-it="Scegli la serata e fammelo sapere"
+        data-ro="Alege seara si anunta-ma">Scegli la serata e fammelo sapere</h2>
+
+    <div class="date-picker">
+      <input type="radio" name="data" id="venerdi" value="Venerdì sera" class="date-option">
+      <label for="venerdi" class="date-label">
+        <span class="d-emoji">🍷</span>
+        <span class="day" data-it="Venerdì" data-ro="Vineri">Venerdì</span>
+        <span class="time" data-it="sera" data-ro="seara">sera</span>
+      </label>
+      <input type="radio" name="data" id="sabato" value="Sabato sera" class="date-option">
+      <label for="sabato" class="date-label">
+        <span class="d-emoji">✨</span>
+        <span class="day" data-it="Sabato" data-ro="Sambata">Sabato</span>
+        <span class="time" data-it="sera" data-ro="seara">sera</span>
+      </label>
+    </div>
+
+    <p class="err-msg" id="err-date"
+       data-it="Seleziona prima una serata!"
+       data-ro="Selecteaza mai intai o seara!">Seleziona prima una serata!</p>
+
+    <div class="response-btns">
+      <button class="btn-yes" onclick="handleYes('si')"
+              data-it="Si, ci vengo (e non vedo l'ora)"
+              data-ro="Da, vin (si abia astept)">
+              Si, ci vengo (e non vedo l'ora)
+      </button>
+      <button class="btn-yes enthusiastic" onclick="handleYes('sissimo')"
+              data-it="SI! Con tutto l'entusiasmo del mondo"
+              data-ro="DA! Cu tot entuziasmul din lume">
+              SI! Con tutto l'entusiasmo del mondo
+      </button>
+      <div class="divider">·</div>
+      <button class="btn-no" id="btn-no" onclick="handleNo()"
+              data-it="No (opzione non disponibile in questo universo)"
+              data-ro="Nu (optiune indisponibila in acest univers)">
+              No (opzione non disponibile in questo universo)
+      </button>
+    </div>
+    <p style="font-size:12px;color:rgba(255,255,255,0.3);text-align:center;margin-top:10px;"
+       data-it="La risposta va inviata entro oggi. Promesso (è nei T&C)."
+       data-ro="Raspunsul trebuie trimis astazi. Promis (e in T&C).">
+       La risposta va inviata entro oggi. Promesso (è nei T&C).
+    </p>
+  </div>
+</div>
+
+<footer>
+  <span data-it="Fatto con amore e un pizzico di coraggio · 2025"
+        data-ro="Facut cu dragoste si un strop de curaj · 2025">
+        Fatto con amore e un pizzico di coraggio · 2025
+  </span>
+</footer>
+
+<!-- STEP 1: CELEBRATION -->
+<div id="celebration">
+  <div class="confetti-container" id="confetti"></div>
+  <div class="cel-emoji" id="cel-emoji">🥂</div>
+  <h2 class="cel-title" id="cel-title">Congratulazioni!<br>Hai fatto la scelta giusta.</h2>
+  <p class="cel-sub" id="cel-sub">Ti sei ufficialmente assicurata una serata meravigliosa.<br>Preparati: <em>non te ne pentirai.</em></p>
+  <button class="btn-action" onclick="goToPhoneStep()"
+          data-it="Avanti"
+          data-ro="Mai departe">Avanti</button>
+</div>
+
+<!-- STEP 2: WHATSAPP -->
+<div id="phone-confirm">
+  <div class="pc-badge">💬</div>
+  <h2 class="pc-title" id="pc-title">Ora scrivimi!</h2>
+  <p class="pc-irony" id="pc-irony">
+    Lui non stava aspettando altro.<br>
+    Letteralmente è li con il telefono in mano<br>
+    da quando ti ha mandato questo link.<br>
+    <em>Non farlo soffrire oltre.</em>
+  </p>
+  <div class="pc-date-display" id="pc-date-display">
+    Hai scelto: <span id="chosen-date-display">—</span>
+  </div>
+  <a class="btn-whatsapp" id="wa-btn" href="#" target="_blank" rel="noopener">
+    <span class="btn-whatsapp-icon">📲</span>
+    <span id="wa-btn-text">Apri WhatsApp e conferma</span>
+  </a>
+  <p class="pc-nota" id="pc-nota">
+    Il messaggio è già scritto — devi solo premere Invia.
+  </p>
+</div>
+
+<script>
+const PHONE_NUMBER = '393519447594';
+
+let lang = 'it';
+let chosenDate = '';
+let chosenType = '';
+
+// ---- LINGUA ----
+function setLang(l) {
+  lang = l;
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  document.querySelector('.lang-btn[onclick="setLang(\'' + l + '\')"]').classList.add('active');
+  document.querySelectorAll('[data-it]').forEach(el => {
+    const txt = el.getAttribute('data-' + l);
+    if (!txt) return;
+    if (el.tagName === 'BUTTON') el.textContent = txt;
+    else el.innerHTML = txt;
+  });
+  // Ricalcola href WA se la schermata è già visibile
+  if (document.getElementById('phone-confirm').classList.contains('show')) {
+    document.getElementById('wa-btn').href = buildWaUrl();
+  }
+}
+
+// ---- PETALI ----
+(function createPetals() {
+  const container = document.getElementById('petals');
+  const emojis = ['🌹','❤️','💋','✨','🌸'];
+  for (let i = 0; i < 16; i++) {
+    const p = document.createElement('div');
+    p.className = 'petal';
+    p.textContent = emojis[i % emojis.length];
+    p.style.left = (Math.random() * 100) + '%';
+    p.style.fontSize = (14 + Math.random() * 10) + 'px';
+    p.style.animationDuration = (7 + Math.random() * 8) + 's';
+    p.style.animationDelay = (Math.random() * 12) + 's';
+    container.appendChild(p);
+  }
+})();
+
+// ---- SCROLL REVEAL ----
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.15 });
+document.querySelectorAll('.motivo').forEach(m => observer.observe(m));
+
+// ---- NO BUTTON ----
+let noCount = 0;
+const noMsgs = {
+  it: [
+    'No (opzione non disponibile in questo universo)',
+    'Errore 404: Rifiuto non trovato',
+    'Funzione disabilitata per legge universale',
+    'Il sistema non riconosce questa risposta',
+    'Dai, lo sai che vuoi dire si...',
+    'Stai insistendo? Rispetta i T&C.',
+    'Ok ma... ci stai ancora pensando?'
+  ],
+  ro: [
+    'Nu (optiune indisponibila in acest univers)',
+    'Eroare 404: Refuz negasit',
+    'Functie dezactivata prin lege universala',
+    'Sistemul nu recunoaste acest raspuns',
+    'Hai, stii ca vrei sa spui da...',
+    'Insistesti? Respecta T&C.',
+    'Ok dar... te mai gandesti?'
+  ]
+};
+function handleNo() {
+  noCount++;
+  const btn = document.getElementById('btn-no');
+  btn.classList.remove('shaking');
+  void btn.offsetWidth;
+  btn.classList.add('shaking');
+  btn.textContent = noMsgs[lang][Math.min(noCount, noMsgs[lang].length - 1)];
+}
+
+// ---- YES ----
+function handleYes(type) {
+  const sel = document.querySelector('input[name="data"]:checked');
+  const err = document.getElementById('err-date');
+  if (!sel) {
+    err.classList.add('show');
+    err.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return;
+  }
+  err.classList.remove('show');
+  chosenDate = sel.value;
+  chosenType = type;
+  showCelebration(type);
+}
+
+// ---- CELEBRATION ----
+function showCelebration(type) {
+  const titles = {
+    it: { si: 'Congratulazioni!<br>Hai fatto la scelta giusta.', sissimo: 'INCREDIBILE!<br>Risposta perfetta!' },
+    ro: { si: 'Felicitari!<br>Ai facut alegerea corecta.', sissimo: 'INCREDIBIL!<br>Raspuns perfect!' }
+  };
+  const subs = {
+    it: {
+      si: 'Ti sei ufficialmente assicurata una serata meravigliosa.<br>Appuntamento confermato per <em>' + chosenDate + '</em>.',
+      sissimo: 'Con TUTTO quell\'entusiasmo? Stai già rendendo tutto più bello.<br>Ci vediamo <em>' + chosenDate + '</em>.'
+    },
+    ro: {
+      si: 'Ti-ai asigurat oficial o seara minunata.<br>Intalnire confirmata pentru <em>' + chosenDate + '</em>.',
+      sissimo: 'Cu TOT acel entuziasm? Deja faci totul mai frumos.<br>Ne vedem <em>' + chosenDate + '</em>.'
+    }
+  };
+  document.getElementById('cel-emoji').textContent = type === 'sissimo' ? '🎊' : '🥂';
+  document.getElementById('cel-title').innerHTML = (titles[lang] || titles.it)[type];
+  document.getElementById('cel-sub').innerHTML   = (subs[lang] || subs.it)[type];
+  document.querySelector('#celebration .btn-action').textContent = lang === 'ro' ? 'Mai departe' : 'Avanti';
+  document.getElementById('celebration').classList.add('show');
+  spawnConfetti('confetti', ['#c0392b','#c9a84c','#e8c870','#fff','#f4e4b0']);
+}
+
+// ---- PHONE STEP ----
+function goToPhoneStep() {
+  document.getElementById('celebration').classList.remove('show');
+  const screen = document.getElementById('phone-confirm');
+  screen.classList.add('show');
+
+  // Aggiorna testi in lingua
+  const titles = { it: 'Ora scrivimi!', ro: 'Acum scrie-mi!' };
+  const irony  = {
+    it: 'Lui non stava aspettando altro.<br>Letteralmente è lì con il telefono in mano<br>da quando ti ha mandato questo link.<br><em>Non farlo soffrire oltre.</em>',
+    ro: 'El nu astepta altceva.<br>Literalmente e acolo cu telefonul in mana<br>de cand ti-a trimis acest link.<br><em>Nu-l mai face sa sufere.</em>'
+  };
+  const dateLabel = { it: 'Hai scelto: ', ro: 'Ai ales: ' };
+  const btnTxt   = { it: 'Apri WhatsApp e conferma', ro: 'Deschide WhatsApp si confirma' };
+  const nota     = { it: 'Il messaggio è già scritto — devi solo premere Invia.', ro: 'Mesajul e deja scris — trebuie doar sa apesi Trimite.' };
+
+  document.getElementById('pc-title').textContent = titles[lang] || titles.it;
+  document.getElementById('pc-irony').innerHTML   = irony[lang] || irony.it;
+  document.getElementById('pc-date-display').innerHTML = (dateLabel[lang] || dateLabel.it) + '<span id="chosen-date-display">' + chosenDate + '</span>';
+  document.getElementById('wa-btn-text').textContent   = btnTxt[lang] || btnTxt.it;
+  document.getElementById('pc-nota').textContent       = nota[lang] || nota.it;
+
+  // Imposta href direttamente sul tag <a> — unico metodo affidabile su iOS Safari
+  const waUrl = buildWaUrl();
+  document.getElementById('wa-btn').href = waUrl;
+}
+
+// ---- WHATSAPP URL ----
+function buildWaUrl() {
+  if (!chosenDate) return '#';
+  const risposta = chosenType === 'sissimo'
+    ? (lang === 'ro' ? 'DA con tot entuziasmul! 🔥' : 'SI con tutto l\'entusiasmo! 🔥')
+    : (lang === 'ro' ? 'Da, vin! ✅' : 'Si, ci vengo! ✅');
+  const msg = lang === 'ro'
+    ? 'Buna! Am vazut site-ul tau. Raspunsul meu e: ' + risposta + '\nSeara aleasa: ' + chosenDate + '\nNe vedem! 🍷'
+    : 'Ciao! Ho visto il tuo sito. La mia risposta e: ' + risposta + '\nHo scelto: ' + chosenDate + '\nCi vediamo! 🍷';
+  return 'https://wa.me/' + PHONE_NUMBER + '?text=' + encodeURIComponent(msg);
+}
+
+// ---- CONFETTI ----
+function spawnConfetti(containerId, colors) {
+  const c = document.getElementById(containerId);
+  c.innerHTML = '';
+  for (let i = 0; i < 70; i++) {
+    const el = document.createElement('div');
+    el.className = 'conf';
+    el.style.left   = (Math.random() * 100) + '%';
+    el.style.background = colors[Math.floor(Math.random() * colors.length)];
+    el.style.animationDuration = (1.5 + Math.random() * 2.5) + 's';
+    el.style.animationDelay    = (Math.random() * 1.2) + 's';
+    const size = (6 + Math.random() * 9) + 'px';
+    el.style.width  = size;
+    el.style.height = size;
+    el.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+    c.appendChild(el);
+  }
+}
+
+// ---- UNICORNO EASTER EGG ----
+let unicornClicks = 0;
+document.getElementById('unicorn').addEventListener('click', () => {
+  unicornClicks++;
+  if (unicornClicks >= 3) {
+    alert(lang === 'ro'
+      ? '🦄 L-ai gasit pe unicorn! E un semn bun. Spune da. ✨'
+      : '🦄 Hai trovato l\'unicorno! E\' un buon segno. Di\' si. ✨');
+    unicornClicks = 0;
+  }
+});
+</script>
+</body>
+</html>
