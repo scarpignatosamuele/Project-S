@@ -687,8 +687,8 @@ function buildWaUrl() {
     ? (lang === 'ro' ? 'DA con tot entuziasmul! 🔥' : 'SI con tutto l\'entusiasmo! 🔥')
     : (lang === 'ro' ? 'Da, vin! ✅' : 'Si, ci vengo! ✅');
   const msg = lang === 'ro'
-    ? 'Buna! Am vazut site-ul tau. Raspunsul meu e: ' + risposta + '\nSeara aleasa: ' + chosenDate + '\nNe vedem! 🍷'
-    : 'Ciao! Ho visto il tuo sito. La mia risposta e: ' + risposta + '\nHo scelto: ' + chosenDate + '\nPS: lui aveva già scelto il ristorante 😄\nCi vediamo! 🍷';
+    ? '🤖 InvitaBot\n---\nȘtefana a acceptat invitația ta la cină.\nSeara aleasă: ' + chosenDate + '\n---'
+    : '🤖 InvitaBot\n---\nȘtefana ha accettato il tuo invito a cena.\nSerata scelta: ' + chosenDate + '\n---';
   return 'https://wa.me/' + PHONE_NUMBER + '?text=' + encodeURIComponent(msg);
 }
  
