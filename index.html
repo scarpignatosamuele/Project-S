@@ -27,6 +27,46 @@
     position: relative;
   }
  
+  /* Quando il sito è bloccato, nascondi tutto tranne il lock */
+  body.locked > *:not(#time-lock) {
+    visibility: hidden;
+  }
+ 
+  /* TIME LOCK */
+  #time-lock {
+    display: none; position: fixed; inset: 0;
+    background: linear-gradient(160deg, #1a0a06 0%, #3d0e0e 50%, #1a0a06 100%);
+    z-index: 99999; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center; padding: 40px 24px;
+    transition: opacity .8s;
+  }
+  #time-lock.unlocking { opacity: 0; pointer-events: none; }
+  .tl-inner { max-width: 300px; }
+  .tl-icon { font-size: 72px; margin-bottom: 20px; display: block; transition: transform .3s; }
+  .tl-icon.unlocking-icon {
+    animation: lockOpen .6s ease forwards;
+  }
+  @keyframes lockOpen {
+    0%   { transform: scale(1) rotate(0deg); }
+    25%  { transform: scale(1.3) rotate(-15deg); }
+    50%  { transform: scale(1.4) rotate(10deg); }
+    75%  { transform: scale(1.2) rotate(-5deg); }
+    100% { transform: scale(1) rotate(0deg); }
+  }
+  .tl-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px; color: var(--gold); margin-bottom: 16px;
+  }
+  .tl-sub { color: rgba(255,255,255,0.7); font-size: 15px; line-height: 1.6; margin-bottom: 28px; }
+  .tl-sub strong { color: white; }
+  .tl-countdown {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px; color: white; letter-spacing: 4px;
+    margin-bottom: 12px;
+  }
+  .tl-hint { font-size: 12px; color: rgba(255,255,255,0.3); }
+ 
   /* UNICORNO */
   #unicorn {
     position: fixed; bottom: 20px; left: -80px;
@@ -326,9 +366,9 @@
   <p class="hero-eyebrow" data-it="✦ Una proposta ufficiale ✦" data-ro="✦ O propunere oficială ✦">✦ Una proposta ufficiale ✦</p>
   <h1 data-it="E allora…<br><em>ci vieni a cena<br>con me?</em>" data-ro="Ei bine…<br><em>vii la cină<br>cu mine?</em>">E allora…<br><em>ci vieni a cena<br>con me?</em></h1>
   <p class="hero-sub"
-     data-it="Ștefana, questa è un'opportunità rara. Tipo 1 su 6 miliardi. Procedi a tuo rischio e meraviglia."
-     data-ro="Ștefana, aceasta e o oportunitate rară. Cam 1 din 6 miliarde. Continuă pe propriul risc și uimire.">
-     Ștefana, questa è un'opportunità rara. Tipo 1 su 6 miliardi. Procedi a tuo rischio e meraviglia.
+     data-it="Ștefana, questa è un'opportunità rara. Tipo 1 su 6 miliardi. Procedi a tuo rischio e pericolo."
+     data-ro="Ștefana, aceasta e o oportunitate rară. Cam 1 din 6 miliarde. Continuă pe propriul risc și pericol.">
+     Ștefana, questa è un'opportunità rara. Tipo 1 su 6 miliardi. Procedi a tuo rischio e pericolo.
   </p>
   <div class="scroll-hint">↓</div>
 </div>
@@ -380,8 +420,8 @@
     <div class="motivo-num">5</div>
     <div class="motivo-text">
       <strong data-it="Peugeot 206+ — il futuro dell'auto" data-ro="Peugeot 206+ — viitorul masinii">Peugeot 206+ — il futuro dell'auto</strong>
-      <span data-it="Ultimo ritrovato della tecnica automobilistica moderna. Una vera auto da emozioni, a ben 70 km/h. Roba da far girare la testa — letteralmente."
-            data-ro="Ultima realizare a tehnicii auto moderne. O mașină adevărată pentru emoții, la 70 km/h. Ceva care îți dă capul pe spate — literal.">Ultimo ritrovato della tecnica automobilistica moderna. Una vera auto da emozioni, a ben 70 km/h. Roba da far girare la testa — letteralmente.</span>
+      <span data-it="Ultimo ritrovato della tecnica automobilistica moderna. Una vera auto da emozioni, a ben 70 km/h. Roba da far girare la testa. Letteralmente."
+            data-ro="Ultima realizare a tehnicii auto moderne. O mașină adevărată pentru emoții, la 70 km/h. Ceva care îți dă capul pe spate. Literal.">Ultimo ritrovato della tecnica automobilistica moderna. Una vera auto da emozioni, a ben 70 km/h. Roba da far girare la testa. Letteralmente.</span>
     </div>
   </div>
  
@@ -407,8 +447,8 @@
     <div class="motivo-num">8</div>
     <div class="motivo-text">
       <strong data-it="Cieco alle red flag, ma non alla tua luce" data-ro="Orb la semnale de alarma, dar nu la lumina ta">Cieco alle red flag, ma non alla tua luce</strong>
-      <span data-it="Completamente incapace di vedere i segnali d'allarme — ma apprezza eccome il rosso focoso della tua fiammeggiante passione. Qualcuno lo chiamerebbe un difetto. Lui lo chiama fedeltà."
-            data-ro="Complet incapabil să vadă semnalele de alarmă — dar apreciază din plin roșul aprins al pasiunii tale. Unii ar numi-o slăbiciune. El o numește loialitate.">Completamente incapace di vedere i segnali d'allarme — ma apprezza eccome il rosso focoso della tua fiammeggiante passione. Qualcuno lo chiamerebbe un difetto. Lui lo chiama fedeltà.</span>
+      <span data-it="Completamente incapace di vedere i segnali d'allarme, ma apprezza eccome il rosso focoso della tua fiammeggiante passione. Qualcuno lo chiamerebbe un difetto. Lui lo chiama fedeltà."
+            data-ro="Complet incapabil să vadă semnalele de alarmă, dar apreciază din plin roșul aprins al pasiunii tale. Unii ar numi-o slăbiciune. El o numește loialitate.">Completamente incapace di vedere i segnali d'allarme, ma apprezza eccome il rosso focoso della tua fiammeggiante passione. Qualcuno lo chiamerebbe un difetto. Lui lo chiama fedeltà.</span>
     </div>
   </div>
 </section>
@@ -435,9 +475,9 @@
 <section style="padding-top: 0;">
   <div class="tc-box">
     <h4 data-it="Termini e Condizioni (da leggere attentamente)" data-ro="Termeni si Conditii (de citit cu atentie)">Termini e Condizioni (da leggere attentamente)</h4>
-    <span data-it="Accettando questa proposta, l'utente (d'ora in poi «Ștefana») dichiara di fidarsi ciecamente e di lasciarsi conquistare entro un periodo ragionevole, stimato in una cena ma non limitato ad essa. Ștefana si impegna a non esercitare il diritto di recesso durante la prima portata. Il proponente non si assume responsabilità per eventuali attacchi di risate, momenti imbarazzanti o eccessiva simpatia involontaria. La presente offerta è valida fino a esaurimento serata. Qualsiasi tentativo di rispondere «No» verrà tecnicamente rigettato dal sistema. Non sono previsti rimborsi per aspettative infrante — ma sono previste aspettative abbondantemente soddisfatte."
+    <span data-it="Accettando questa proposta, l'utente (d'ora in poi «Ștefana») dichiara di fidarsi ciecamente e di lasciarsi conquistare entro un periodo ragionevole, stimato in una cena ma non limitato ad essa. Ștefana si impegna a non esercitare il diritto di recesso durante la prima portata. Il proponente non si assume responsabilità per eventuali attacchi di risate, momenti imbarazzanti o eccessiva simpatia involontaria. La presente offerta è valida fino a esaurimento serata. Qualsiasi tentativo di rispondere «No» verrà tecnicamente rigettato dal sistema. Non sono previsti rimborsi per aspettative infrante, ma sono previste aspettative abbondantemente soddisfatte."
           data-ro="Acceptând această propunere, utilizatoarea (de acum înainte «Ștefana») declară că are încredere oarbă și că se lasă cucerită. Ștefana se angajează să nu exercite dreptul de retragere în timpul primului fel. Il proponente non risponde di attacchi di risate, momenti imbarazzanti o simpatia involontaria eccessiva.">
-    Accettando questa proposta, l'utente (d'ora in poi «Ștefana») dichiara di fidarsi ciecamente e di lasciarsi conquistare entro un periodo ragionevole, stimato in una cena ma non limitato ad essa. Ștefana si impegna a non esercitare il diritto di recesso durante la prima portata. Il proponente non si assume responsabilità per eventuali attacchi di risate, momenti imbarazzanti o eccessiva simpatia involontaria. La presente offerta è valida fino a esaurimento serata. Qualsiasi tentativo di rispondere «No» verrà tecnicamente rigettato dal sistema. Non sono previsti rimborsi per aspettative infrante — ma sono previste aspettative abbondantemente soddisfatte.</span>
+    Accettando questa proposta, l'utente (d'ora in poi «Ștefana») dichiara di fidarsi ciecamente e di lasciarsi conquistare entro un periodo ragionevole, stimato in una cena ma non limitato ad essa. Ștefana si impegna a non esercitare il diritto di recesso durante la prima portata. Il proponente non si assume responsabilità per eventuali attacchi di risate, momenti imbarazzanti o eccessiva simpatia involontaria. La presente offerta è valida fino a esaurimento serata. Qualsiasi tentativo di rispondere «No» verrà tecnicamente rigettato dal sistema. Non sono previsti rimborsi per aspettative infrante, ma sono previste aspettative abbondantemente soddisfatte.</span>
   </div>
 </section>
  
@@ -496,7 +536,121 @@
         data-ro="Facut cu nebunie si multa creativitate · 2026">Fatto con demenza e tanta creatività · 2026</span>
 </footer>
  
-<!-- CELEBRATION -->
+<!-- TIME LOCK -->
+<div id="time-lock">
+  <div class="tl-inner">
+    <div class="tl-icon" id="tl-icon">🔒</div>
+    <h2 class="tl-title" id="tl-title">Non ancora…</h2>
+    <p class="tl-sub" id="tl-sub">Questo sito si sblocca alle <strong>18:15</strong> di oggi.<br>Torna dopo, ne varrà la pena.</p>
+    <div class="tl-countdown" id="tl-countdown">--:--:--</div>
+    <p class="tl-hint">⏰ Il timer si aggiorna in automatico</p>
+    <div style="margin-top:40px;">
+      <button onclick="toggleAdminUnlock()" style="background:none;border:none;color:rgba(255,255,255,0.1);font-size:11px;cursor:pointer;font-family:'DM Sans',sans-serif;padding:8px;">·</button>
+    </div>
+    <div id="admin-unlock" style="display:none;margin-top:8px;">
+      <input type="password" id="admin-pwd" placeholder="password"
+        style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:white;border-radius:10px;padding:10px 14px;font-size:14px;font-family:'DM Sans',sans-serif;width:180px;text-align:center;outline:none;"
+        onkeydown="if(event.key==='Enter') checkAdminPwd()">
+      <br><br>
+      <button onclick="checkAdminPwd()"
+        style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.15);border-radius:10px;padding:8px 20px;font-size:13px;font-family:'DM Sans',sans-serif;cursor:pointer;">
+        Entra
+      </button>
+      <p id="admin-err" style="color:#e74c3c;font-size:12px;margin-top:8px;display:none;">Password errata.</p>
+    </div>
+  </div>
+</div>
+ 
+<script>
+const UNLOCK_HOUR = 18;
+const UNLOCK_MIN  = 15;
+const LOCK_DATE   = { year: 2026, month: 5, day: 20 }; // solo oggi
+ 
+function getItalianTime() {
+  return new Date(new Date().toLocaleString('en-US', { timeZone: 'Europe/Rome' }));
+}
+ 
+function isLockDay() {
+  const t = getItalianTime();
+  return t.getFullYear() === LOCK_DATE.year &&
+         (t.getMonth() + 1) === LOCK_DATE.month &&
+         t.getDate() === LOCK_DATE.day;
+}
+ 
+function isUnlocked() {
+  if (!isLockDay()) return true; // dopo oggi sempre accessibile
+  const t = getItalianTime();
+  return t.getHours() > UNLOCK_HOUR ||
+        (t.getHours() === UNLOCK_HOUR && t.getMinutes() >= UNLOCK_MIN);
+}
+ 
+function updateCountdown() {
+  const now    = getItalianTime();
+  const unlock = new Date(now);
+  unlock.setHours(UNLOCK_HOUR, UNLOCK_MIN, 0, 0);
+  const diff = unlock - now;
+  if (diff <= 0) return;
+  const h = Math.floor(diff / 3600000);
+  const m = Math.floor((diff % 3600000) / 60000);
+  const s = Math.floor((diff % 60000) / 1000);
+  document.getElementById('tl-countdown').textContent =
+    String(h).padStart(2,'0') + ':' + String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
+}
+ 
+function toggleAdminUnlock() {
+  const el = document.getElementById('admin-unlock');
+  el.style.display = el.style.display === 'none' ? 'block' : 'none';
+  if (el.style.display === 'block') document.getElementById('admin-pwd').focus();
+}
+ 
+function checkAdminPwd() {
+  const pwd = document.getElementById('admin-pwd').value;
+  if (pwd === 'Venom_1988!?') {
+    doUnlock();
+  } else {
+    const err = document.getElementById('admin-err');
+    err.style.display = 'block';
+    document.getElementById('admin-pwd').value = '';
+    setTimeout(() => { err.style.display = 'none'; }, 2000);
+  }
+}
+ 
+function doUnlock() {
+  const icon = document.getElementById('tl-icon');
+  const lock = document.getElementById('time-lock');
+  // 1. Cambia lucchetto
+  icon.textContent = '🔓';
+  icon.classList.add('unlocking-icon');
+  document.getElementById('tl-countdown').textContent = '00:00:00';
+  document.getElementById('tl-title').textContent = 'Sbloccato!';
+  document.getElementById('tl-sub').innerHTML = 'Il sito è pronto. Buona fortuna. 🍷';
+  document.getElementById('tl-hint').textContent = '';
+  lock.style.pointerEvents = 'none';
+  // 2. Dopo 1.5s: rivela il contenuto e dissolvi il lock
+  setTimeout(() => {
+    document.body.classList.remove('locked'); // mostra il contenuto
+    lock.style.transition = 'opacity 0.8s';
+    lock.style.opacity = '0';
+    setTimeout(() => { lock.style.display = 'none'; }, 900);
+  }, 1500);
+}
+ 
+(function initLock() {
+  if (isUnlocked()) return;
+  document.body.classList.add('locked'); // nasconde il contenuto
+  const lock = document.getElementById('time-lock');
+  lock.style.display = 'flex';
+  updateCountdown();
+  const iv = setInterval(() => {
+    if (isUnlocked()) {
+      clearInterval(iv);
+      doUnlock();
+    } else {
+      updateCountdown();
+    }
+  }, 1000);
+})();
+</script>
 <div id="celebration" class="overlay">
   <div class="confetti-container" id="confetti"></div>
   <div class="cel-emoji" id="cel-emoji">🥂</div>
