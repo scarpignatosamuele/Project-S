@@ -16,9 +16,9 @@
     --gold: #c9a84c;
     --light-gold: #f4e4b0;
   }
- 
+
   * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
- 
+
   body {
     font-family: 'DM Sans', sans-serif;
     background: var(--cream);
@@ -26,12 +26,12 @@
     overflow-x: hidden;
     position: relative;
   }
- 
+
   /* Quando il sito è bloccato, nascondi tutto tranne il lock */
   body.locked > *:not(#time-lock) {
     visibility: hidden;
   }
- 
+
   /* TIME LOCK */
   #time-lock {
     display: none; position: fixed; inset: 0;
@@ -66,7 +66,7 @@
     margin-bottom: 12px;
   }
   .tl-hint { font-size: 12px; color: rgba(255,255,255,0.3); }
- 
+
   /* UNICORNO */
   #unicorn {
     position: fixed; bottom: 20px; left: -80px;
@@ -83,7 +83,7 @@
     99%  { left: -80px; transform: scaleX(1); }
     100% { left: -80px; transform: scaleX(1); }
   }
- 
+
   /* LANG */
   #lang-switcher {
     position: fixed; top: 16px; right: 16px;
@@ -96,7 +96,7 @@
     touch-action: manipulation;
   }
   .lang-btn.active { background: var(--red); color: white; }
- 
+
   /* HERO */
   .hero {
     min-height: 100vh;
@@ -139,7 +139,7 @@
     animation: bounce 2s ease-in-out infinite;
   }
   @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(8px); } }
- 
+
   /* SEZIONI */
   section { padding: 56px 20px; max-width: 480px; margin: 0 auto; }
   .section-label {
@@ -151,7 +151,7 @@
     font-size: clamp(24px, 6vw, 38px);
     color: var(--dark); margin-bottom: 28px; line-height: 1.2;
   }
- 
+
   /* MOTIVI */
   .motivo {
     background: white; border-radius: 14px; padding: 18px;
@@ -168,7 +168,7 @@
   }
   .motivo-text { font-size: 14px; line-height: 1.6; color: #444; }
   .motivo-text strong { color: var(--dark); display: block; margin-bottom: 4px; font-weight: 500; font-size: 15px; }
- 
+
   /* DRESS CODE */
   .dresscode-box {
     background: linear-gradient(135deg, #1a0a06, #3d0e0e);
@@ -185,7 +185,7 @@
   .dresscode-list li:last-child { border-bottom: none; }
   .dresscode-finale { color: var(--gold); font-family: 'Playfair Display', serif; font-size: 16px; margin-top: 8px; }
   .dresscode-lui { font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 10px; font-style: italic; }
- 
+
   /* T&C */
   .tc-box {
     background: #fff8ee; border: 1px solid var(--light-gold);
@@ -193,13 +193,13 @@
     font-size: 12px; color: #777; line-height: 1.7;
   }
   .tc-box h4 { font-family: 'Playfair Display', serif; font-size: 15px; color: var(--dark); margin-bottom: 10px; }
- 
+
   /* FORM */
   .form-section { background: var(--dark); margin: 0; max-width: none; padding: 56px 20px; }
   .form-inner { max-width: 480px; margin: 0 auto; }
   .form-section .section-label { color: var(--gold); }
   .form-section .section-title { color: white; }
- 
+
   /* DATE PICKER */
   .date-picker { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
   .date-option { display: none; }
@@ -215,7 +215,7 @@
   .date-label .day { font-family: 'Playfair Display', serif; font-size: 20px; color: white; margin-bottom: 4px; }
   .date-label .time { font-size: 12px; color: rgba(255,255,255,0.45); }
   .date-label .d-emoji { font-size: 26px; margin-bottom: 8px; display: block; }
- 
+
   /* CHECKBOX T&C */
   .tc-accept {
     display: flex; align-items: flex-start; gap: 12px;
@@ -232,10 +232,10 @@
     font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.5; cursor: pointer;
   }
   .tc-accept-label em { color: var(--gold); font-style: normal; }
- 
+
   /* BOTTONI RISPOSTA */
   .response-btns { display: flex; flex-direction: column; gap: 12px; margin-bottom: 14px; }
- 
+
   .btn-risposta {
     border: none; border-radius: 14px; padding: 18px 20px;
     font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 500;
@@ -245,11 +245,11 @@
   }
   .btn-risposta.unlocked { opacity: 1; pointer-events: auto; }
   .btn-risposta:active { transform: scale(0.98); }
- 
+
   .btn-si    { background: var(--red); color: white; }
   .btn-molto { background: linear-gradient(135deg, #c9a84c, #e8c870); color: var(--dark); }
   .btn-no    { background: rgba(255,255,255,0.12); color: rgba(255,255,255,0.85); border: 1px solid rgba(255,255,255,0.2); }
- 
+
   .btn-no.shaking { animation: shake .5s ease; }
   @keyframes shake {
     0%, 100% { transform: translateX(0); }
@@ -259,10 +259,10 @@
     60% { transform: translateX(6px); }
     75% { transform: translateX(-4px); }
   }
- 
+
   .err-msg { color: #e74c3c; font-size: 13px; text-align: center; margin-bottom: 10px; display: none; }
   .err-msg.show { display: block; }
- 
+
   /* OVERLAYS */
   .overlay {
     display: none; position: fixed; inset: 0;
@@ -273,14 +273,14 @@
     overflow-y: auto; -webkit-overflow-scrolling: touch;
   }
   .overlay.show { display: flex; }
- 
+
   #celebration { background: rgba(26,10,8,0.97); }
   #phone-confirm { background: #0d1f0f; z-index: 9100; }
- 
+
   .confetti-container { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 0; }
   .conf { position: absolute; top: -20px; animation: confalldown linear forwards; border-radius: 2px; }
   @keyframes confalldown { to { transform: translateY(110vh) rotate(720deg); opacity: 0; } }
- 
+
   .cel-emoji { font-size: 60px; margin-bottom: 20px; animation: popIn .5s ease; position: relative; z-index: 1; }
   @keyframes popIn {
     0%   { transform: scale(0) rotate(-20deg); }
@@ -302,7 +302,7 @@
     padding: 14px 28px; font-family: 'DM Sans', sans-serif; font-size: 15px;
     cursor: pointer; position: relative; z-index: 1; touch-action: manipulation;
   }
- 
+
   /* PHONE SCREEN */
   .pc-badge {
     background: #25D366; border-radius: 50%;
@@ -335,7 +335,7 @@
   .btn-whatsapp:active { transform: scale(0.97); }
   .btn-whatsapp-icon { font-size: 22px; }
   .pc-nota { font-size: 11px; color: rgba(255,255,255,0.25); max-width: 240px; line-height: 1.5; }
- 
+
   /* ADMIN PANEL */
   #admin-panel {
     display: none; position: fixed; top: 60px; left: 50%; transform: translateX(-50%);
@@ -344,12 +344,12 @@
     color: white; font-size: 14px; text-align: center; min-width: 200px;
   }
   #admin-panel h4 { color: var(--gold); margin-bottom: 8px; font-family: 'Playfair Display', serif; }
- 
+
   footer { text-align: center; padding: 28px 20px; font-size: 12px; color: #aaa; background: var(--dark); }
 </style>
 </head>
 <body>
- 
+
 <div id="unicorn" title="Shhh...">🦄</div>
 <div id="lang-switcher">
   <button class="lang-btn active" onclick="setLang('it')">🇮🇹 IT</button>
@@ -359,7 +359,7 @@
   <h4>Pannello Admin</h4>
   <p>Visite totali: <strong id="visit-count">...</strong></p>
 </div>
- 
+
 <!-- HERO -->
 <div class="hero">
   <div class="hero-petals" id="petals"></div>
@@ -372,14 +372,14 @@
   </p>
   <div class="scroll-hint">↓</div>
 </div>
- 
+
 <!-- MOTIVI -->
 <section>
   <p class="section-label" data-it="Il dossier scientifico" data-ro="Dosarul stiintific">Il dossier scientifico</p>
   <h2 class="section-title"
       data-it="Perché dovresti accettare<br>(senza pensarci troppo)"
       data-ro="De ce ar trebui să accepți<br>(fără să te gândești prea mult)">Perché dovresti accettare<br>(senza pensarci troppo)</h2>
- 
+
   <div class="motivo">
     <div class="motivo-num">1</div>
     <div class="motivo-text">
@@ -388,7 +388,7 @@
             data-ro="Originar din Sicilia, stilul său fascinant și mafiot ar pune la coadă mii de femei. Conexiunile bune se cultivă. Loialitatea, și mai mult.">Proveniente dalla Sicilia, il suo fare fascinoso e mafioso farebbe fare la fila a migliaia di donne. I contatti giusti si coltivano. La lealtà, ancora di più.</span>
     </div>
   </div>
- 
+
   <div class="motivo">
     <div class="motivo-num">2</div>
     <div class="motivo-text">
@@ -397,7 +397,7 @@
             data-ro="Când o seară se blochează, el știe exact ce să facă: Ctrl+Alt+Del și o luăm de la capăt. Niciun tehnician IT din lume nu reușește să repornească emoțiile ca el.">Quando una serata si blocca, lui sa esattamente cosa fare: Ctrl+Alt+Canc e si riparte da capo. Nessun tecnico IT al mondo riesce a riavviare le emozioni come lui.</span>
     </div>
   </div>
- 
+
   <div class="motivo">
     <div class="motivo-num">3</div>
     <div class="motivo-text">
@@ -406,7 +406,7 @@
             data-ro="Albastri. Ca marea. Nu verzi ca unii. Un detaliu deloc neglijabil.">Azzurri. Come il mare. Non verdi come certa gente. Dettaglio tutt'altro che irrilevante.</span>
     </div>
   </div>
- 
+
   <div class="motivo">
     <div class="motivo-num">4</div>
     <div class="motivo-text">
@@ -415,7 +415,7 @@
             data-ro="Încă în faza de finalizare, dar gata să-ți ofere emoții incredibile de la înălțimea sa oficial documentată.">Ancora in fase di completamento, ma pronto a regalarti emozioni incredibili dalla sua altezza ufficialmente documentata.</span>
     </div>
   </div>
- 
+
   <div class="motivo">
     <div class="motivo-num">5</div>
     <div class="motivo-text">
@@ -424,7 +424,7 @@
             data-ro="Ultima realizare a tehnicii auto moderne. O mașină adevărată pentru emoții, la 70 km/h. Ceva care îți dă capul pe spate. Literal.">Ultimo ritrovato della tecnica automobilistica moderna. Una vera auto da emozioni, a ben 70 km/h. Roba da far girare la testa. Letteralmente.</span>
     </div>
   </div>
- 
+
   <div class="motivo">
     <div class="motivo-num">6</div>
     <div class="motivo-text">
@@ -433,7 +433,7 @@
             data-ro="Încă în faza de dezvoltare, dar previziunile sunt promițătoare. A investi acum înseamnă a accesa valoarea viitoare înaintea tuturor.">Ancora in fase di sviluppo, ma le previsioni sono promettenti. Investire ora significa accedere al valore futuro prima di tutti.</span>
     </div>
   </div>
- 
+
   <div class="motivo">
     <div class="motivo-num">7</div>
     <div class="motivo-text">
@@ -442,7 +442,7 @@
             data-ro="A avea anumite conexiuni nu strică niciodată. La nevoie, știe cui să se adreseze. Să zicem că unele probleme se rezolvă... creativ.">Avere certi contatti non guasta mai. In caso di necessità, sa sempre a chi rivolgersi. Diciamo che certi problemi si risolvono in modo... creativo.</span>
     </div>
   </div>
- 
+
   <div class="motivo">
     <div class="motivo-num">8</div>
     <div class="motivo-text">
@@ -452,7 +452,7 @@
     </div>
   </div>
 </section>
- 
+
 <!-- DRESS CODE -->
 <section style="padding-top: 0;">
   <p class="section-label" data-it="Istruzioni per l'uso" data-ro="Instructiuni de utilizare">Istruzioni per l'uso</p>
@@ -470,7 +470,7 @@
     <p class="dresscode-lui" data-it="Anche lui ci sta ancora pensando su cosa mettersi. Indizio: sarà presentabile." data-ro="Și el se mai gândește ce să îmbrace. Indiciu: va fi prezentabil.">Anche lui ci sta ancora pensando su cosa mettersi. Indizio: sarà presentabile.</p>
   </div>
 </section>
- 
+
 <!-- T&C -->
 <section style="padding-top: 0;">
   <div class="tc-box">
@@ -480,13 +480,13 @@
     Accettando questa proposta, l'utente (d'ora in poi «Ștefana») dichiara di fidarsi ciecamente e di lasciarsi conquistare entro un periodo ragionevole, stimato in una cena ma non limitato ad essa. Ștefana si impegna a non esercitare il diritto di recesso durante la prima portata. Il proponente non si assume responsabilità per eventuali attacchi di risate, momenti imbarazzanti o eccessiva simpatia involontaria. La presente offerta è valida fino a esaurimento serata. Qualsiasi tentativo di rispondere «No» verrà tecnicamente rigettato dal sistema. Non sono previsti rimborsi per aspettative infrante, ma sono previste aspettative abbondantemente soddisfatte.</span>
   </div>
 </section>
- 
+
 <!-- FORM -->
 <div class="form-section">
   <div class="form-inner">
     <p class="section-label" data-it="La tua risposta ufficiale" data-ro="Raspunsul tau oficial">La tua risposta ufficiale</p>
     <h2 class="section-title" data-it="Scegli la serata e fammelo sapere" data-ro="Alege seara si anunta-ma">Scegli la serata e fammelo sapere</h2>
- 
+
     <div class="date-picker">
       <input type="radio" name="data" id="venerdi" value="Venerdì sera" class="date-option">
       <label for="venerdi" class="date-label">
@@ -501,7 +501,7 @@
         <span class="time" data-it="sera" data-ro="seara">sera</span>
       </label>
     </div>
- 
+
     <!-- CHECKBOX T&C -->
     <label class="tc-accept" id="tc-accept-box">
       <input type="checkbox" id="tc-checkbox" onchange="toggleButtons()">
@@ -511,9 +511,9 @@
         Ho letto i Termini e Condizioni e accetto di <em>fidarmi ciecamente</em> e lasciarmi conquistare.
       </span>
     </label>
- 
+
     <p class="err-msg" id="err-date" data-it="Seleziona prima una serata!" data-ro="Selecteaza mai intai o seara!">Seleziona prima una serata!</p>
- 
+
     <div class="response-btns">
       <button class="btn-risposta btn-si" onclick="handleYes('si')"
               data-it="Si, ci vengo (e non vedo l'ora)"
@@ -530,12 +530,12 @@
        data-ro="Raspunsul trebuie trimis astazi. Promis (e in T&C).">La risposta va inviata entro oggi. Promesso (è nei T&C).</p>
   </div>
 </div>
- 
+
 <footer>
   <span data-it="Fatto con demenza e tanta creatività · 2026"
         data-ro="Facut cu nebunie si multa creativitate · 2026">Fatto con demenza e tanta creatività · 2026</span>
 </footer>
- 
+
 <!-- TIME LOCK -->
 <div id="time-lock">
   <div class="tl-inner">
@@ -544,50 +544,38 @@
     <p class="tl-sub" id="tl-sub">Questo sito si sblocca alle <strong>18:15</strong> di oggi.<br>Torna dopo, ne varrà la pena.</p>
     <div class="tl-countdown" id="tl-countdown">--:--:--</div>
     <p class="tl-hint">⏰ Il timer si aggiorna in automatico</p>
-    <div style="margin-top:40px;">
-      <button onclick="toggleAdminUnlock()" style="background:none;border:none;color:rgba(255,255,255,0.1);font-size:11px;cursor:pointer;font-family:'DM Sans',sans-serif;padding:8px;">·</button>
-    </div>
-    <div id="admin-unlock" style="display:none;margin-top:8px;">
-      <input type="password" id="admin-pwd" placeholder="password"
-        style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:white;border-radius:10px;padding:10px 14px;font-size:14px;font-family:'DM Sans',sans-serif;width:180px;text-align:center;outline:none;"
-        onkeydown="if(event.key==='Enter') checkAdminPwd()">
-      <br><br>
-      <button onclick="checkAdminPwd()"
-        style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.15);border-radius:10px;padding:8px 20px;font-size:13px;font-family:'DM Sans',sans-serif;cursor:pointer;">
-        Entra
-      </button>
-      <p id="admin-err" style="color:#e74c3c;font-size:12px;margin-top:8px;display:none;">Password errata.</p>
-    </div>
   </div>
 </div>
- 
+
 <script>
-const UNLOCK_HOUR = 18;
-const UNLOCK_MIN  = 15;
-const LOCK_DATE   = { year: 2026, month: 5, day: 20 }; // solo oggi
- 
+const LOCK_START_H = 12, LOCK_START_M = 0;
+const LOCK_END_H   = 18, LOCK_END_M   = 15;
+const LOCK_DATE    = { year: 2026, month: 5, day: 20 };
+
 function getItalianTime() {
   return new Date(new Date().toLocaleString('en-US', { timeZone: 'Europe/Rome' }));
 }
- 
+
 function isLockDay() {
   const t = getItalianTime();
   return t.getFullYear() === LOCK_DATE.year &&
          (t.getMonth() + 1) === LOCK_DATE.month &&
          t.getDate() === LOCK_DATE.day;
 }
- 
-function isUnlocked() {
-  if (!isLockDay()) return true; // dopo oggi sempre accessibile
+
+function isLocked() {
+  if (!isLockDay()) return false;
   const t = getItalianTime();
-  return t.getHours() > UNLOCK_HOUR ||
-        (t.getHours() === UNLOCK_HOUR && t.getMinutes() >= UNLOCK_MIN);
+  const mins = t.getHours() * 60 + t.getMinutes();
+  const start = LOCK_START_H * 60 + LOCK_START_M;
+  const end   = LOCK_END_H   * 60 + LOCK_END_M;
+  return mins >= start && mins < end;
 }
- 
+
 function updateCountdown() {
-  const now    = getItalianTime();
+  const now = getItalianTime();
   const unlock = new Date(now);
-  unlock.setHours(UNLOCK_HOUR, UNLOCK_MIN, 0, 0);
+  unlock.setHours(LOCK_END_H, LOCK_END_M, 0, 0);
   const diff = unlock - now;
   if (diff <= 0) return;
   const h = Math.floor(diff / 3600000);
@@ -596,53 +584,37 @@ function updateCountdown() {
   document.getElementById('tl-countdown').textContent =
     String(h).padStart(2,'0') + ':' + String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
 }
- 
-function toggleAdminUnlock() {
-  const el = document.getElementById('admin-unlock');
-  el.style.display = el.style.display === 'none' ? 'block' : 'none';
-  if (el.style.display === 'block') document.getElementById('admin-pwd').focus();
-}
- 
-function checkAdminPwd() {
-  const pwd = document.getElementById('admin-pwd').value;
-  if (pwd === 'Venom_1988!?') {
-    doUnlock();
-  } else {
-    const err = document.getElementById('admin-err');
-    err.style.display = 'block';
-    document.getElementById('admin-pwd').value = '';
-    setTimeout(() => { err.style.display = 'none'; }, 2000);
-  }
-}
- 
+
 function doUnlock() {
-  const icon = document.getElementById('tl-icon');
   const lock = document.getElementById('time-lock');
-  // 1. Cambia lucchetto
+  const icon = document.getElementById('tl-icon');
+  if (!lock) return;
   icon.textContent = '🔓';
   icon.classList.add('unlocking-icon');
-  document.getElementById('tl-countdown').textContent = '00:00:00';
+  document.getElementById('tl-countdown').textContent = '✓';
   document.getElementById('tl-title').textContent = 'Sbloccato!';
-  document.getElementById('tl-sub').innerHTML = 'Il sito è pronto. Buona fortuna. 🍷';
-  document.getElementById('tl-hint').textContent = '';
+  document.getElementById('tl-sub').textContent = 'Benvenuta. 🍷';
   lock.style.pointerEvents = 'none';
-  // 2. Dopo 1.5s: rivela il contenuto e dissolvi il lock
-  setTimeout(() => {
-    document.body.classList.remove('locked'); // mostra il contenuto
-    lock.style.transition = 'opacity 0.8s';
+  setTimeout(function() {
+    document.body.classList.remove('locked');
+    lock.style.transition = 'opacity 0.7s';
     lock.style.opacity = '0';
-    setTimeout(() => { lock.style.display = 'none'; }, 900);
-  }, 1500);
+    window.scrollTo(0, 0);
+    setTimeout(function() { lock.style.display = 'none'; }, 750);
+  }, 1400);
 }
- 
+
+function toggleAdminUnlock() {}
+function checkAdminPwd() {}
+
 (function initLock() {
-  if (isUnlocked()) return;
-  document.body.classList.add('locked'); // nasconde il contenuto
+  if (!isLocked()) return;
+  document.body.classList.add('locked');
   const lock = document.getElementById('time-lock');
   lock.style.display = 'flex';
   updateCountdown();
-  const iv = setInterval(() => {
-    if (isUnlocked()) {
+  const iv = setInterval(function() {
+    if (!isLocked()) {
       clearInterval(iv);
       doUnlock();
     } else {
@@ -658,7 +630,7 @@ function doUnlock() {
   <p class="cel-sub" id="cel-sub">Ti sei ufficialmente assicurata una serata meravigliosa.<br>Preparati: <em>non te ne pentirai.</em></p>
   <button class="btn-action" onclick="goToPhoneStep()" data-it="Avanti" data-ro="Mai departe">Avanti</button>
 </div>
- 
+
 <!-- WHATSAPP -->
 <div id="phone-confirm" class="overlay">
   <div class="pc-badge">💬</div>
@@ -676,13 +648,13 @@ function doUnlock() {
   </a>
   <p class="pc-nota" id="pc-nota">Il messaggio è già scritto — devi solo premere Invia.</p>
 </div>
- 
+
 <script>
 const PHONE_NUMBER = '393519447594';
 let lang = 'it';
 let chosenDate = '';
 let chosenType = '';
- 
+
 // ---- ADMIN ----
 (function checkAdmin() {
   if (window.location.search.includes('admin=samu')) {
@@ -696,14 +668,14 @@ let chosenType = '';
       });
   }
 })();
- 
+
 // ---- CONTATORE VISITE ----
 (function countVisit() {
   fetch('https://api.countapi.xyz/hit/stefana-invito/visite').catch(() => {});
   const n = parseInt(localStorage.getItem('visite_count') || '0') + 1;
   localStorage.setItem('visite_count', n);
 })();
- 
+
 // ---- LINGUA ----
 function setLang(l) {
   lang = l;
@@ -719,7 +691,7 @@ function setLang(l) {
     document.getElementById('wa-btn').href = buildWaUrl();
   }
 }
- 
+
 // ---- PETALI ----
 (function() {
   const container = document.getElementById('petals');
@@ -735,13 +707,13 @@ function setLang(l) {
     container.appendChild(p);
   }
 })();
- 
+
 // ---- SCROLL REVEAL ----
 const obs = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
 }, { threshold: 0.15 });
 document.querySelectorAll('.motivo').forEach(m => obs.observe(m));
- 
+
 // ---- CHECKBOX ----
 function toggleButtons() {
   const checked = document.getElementById('tc-checkbox').checked;
@@ -750,7 +722,7 @@ function toggleButtons() {
   });
   vibrate([30]);
 }
- 
+
 // ---- NO ----
 let noCount = 0;
 const noMsgs = {
@@ -766,7 +738,7 @@ function handleNo() {
   btn.textContent = noMsgs[lang][Math.min(noCount, noMsgs[lang].length - 1)];
   vibrate([50, 30, 50]);
 }
- 
+
 // ---- YES ----
 function handleYes(type) {
   const sel = document.querySelector('input[name="data"]:checked');
@@ -783,12 +755,12 @@ function handleYes(type) {
   vibrate([50, 50, 100, 50, 200]);
   showCelebration(type);
 }
- 
+
 // ---- VIBRAZIONE ----
 function vibrate(pattern) {
   if ('vibrate' in navigator) navigator.vibrate(pattern);
 }
- 
+
 // ---- CELEBRATION ----
 function showCelebration(type) {
   const titles = {
@@ -812,7 +784,7 @@ function showCelebration(type) {
   document.getElementById('celebration').classList.add('show');
   spawnConfetti('confetti', ['#c0392b','#c9a84c','#e8c870','#fff','#f4e4b0']);
 }
- 
+
 // ---- PHONE STEP ----
 function goToPhoneStep() {
   document.getElementById('celebration').classList.remove('show');
@@ -833,7 +805,7 @@ function goToPhoneStep() {
   document.getElementById('pc-nota').textContent    = nota[lang] || nota.it;
   document.getElementById('wa-btn').href = buildWaUrl();
 }
- 
+
 // ---- WHATSAPP ----
 function buildWaUrl() {
   if (!chosenDate) return '#';
@@ -845,7 +817,7 @@ function buildWaUrl() {
     : '🤖 InvitaBot\n---\nȘtefana ha accettato il tuo invito a cena.\nSerata scelta: ' + chosenDate + '\n---';
   return 'https://wa.me/' + PHONE_NUMBER + '?text=' + encodeURIComponent(msg);
 }
- 
+
 // ---- CONFETTI ----
 function spawnConfetti(id, colors) {
   const c = document.getElementById(id);
@@ -863,7 +835,7 @@ function spawnConfetti(id, colors) {
     c.appendChild(el);
   }
 }
- 
+
 // ---- UNICORNO ----
 let unicornClicks = 0;
 document.getElementById('unicorn').addEventListener('click', () => {
